@@ -49,6 +49,28 @@ public class index {
         return results;
     }
 
+    // DELETE
+    public static void deleteContact(Path p, String delContact){
+        List<String> originalList = new ArrayList<>();
+        List<String> newContactList = new ArrayList<>();
+        try {
+            originalList = Files.readAllLines(p);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (String contact: originalList){
+            if (!contact.contains(delContact)){
+              newContactList.add(contact);
+            }
+        }
+
+        try {
+            Files.write(p, newContactList);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 //    SHOW FILTERED CONTACTS
     public static void showFilteredContacts(List<String> file){
         for (String contact: file){
@@ -74,6 +96,9 @@ public class index {
 //        showContacts(p, file);
 //        List<String> search = searchContact(p, file, "John Smith");
 //        showFilteredContacts(search);
+        deleteContact(p, "John Smith");
+        showContacts(p, file);
+
 
 
     }
