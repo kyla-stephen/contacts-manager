@@ -33,6 +33,29 @@ public class index {
         }
     }
 
+//    SEARCH
+    public static List<String> searchContact(Path p, List<String> file, String search){
+        List<String> results = new ArrayList<>();
+        try {
+            file = Files.readAllLines(p);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (String contact: file){
+            if(contact.contains(search)){
+                results.add(contact);
+            }
+        }
+        return results;
+    }
+
+//    SHOW FILTERED CONTACTS
+    public static void showFilteredContacts(List<String> file){
+        for (String contact: file){
+            System.out.println(contact);
+        }
+
+    }
 
 
 //    MAIN
@@ -43,8 +66,15 @@ public class index {
 
 //        showContacts(p, file);
 
-        List<String> newContact = Arrays.asList("John Smith 2105555555");
-        addContact(p, newContact);
-        showContacts(p, file);
+//        List<String> newContact = Arrays.asList("John Smith 2105555555");
+//        addContact(p, newContact);
+//        showContacts(p, file);
+
+
+//        showContacts(p, file);
+//        List<String> search = searchContact(p, file, "John Smith");
+//        showFilteredContacts(search);
+
+
     }
 }
