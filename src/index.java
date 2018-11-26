@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
 
 public class index {
 
@@ -85,20 +86,56 @@ public class index {
 //        Variables
         Path p = Paths.get("contacts.txt");
         List<String> file = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
 
-//        showContacts(p, file);
+        String options = "1. View contacts.\n" +
+                "2. Add a new contact.\n" +
+                "3. Search a contact by name.\n" +
+                "4. Delete an existing contact.\n" +
+                "5. Exit.\n" +
+                "Enter an option (1, 2, 3, 4 or 5):";
 
-//        List<String> newContact = Arrays.asList("John Smith 2105555555");
-//        addContact(p, newContact);
-//        showContacts(p, file);
 
+        int input = 0;
+        do{
+            //Prompts
+            System.out.println("Welcome to your contact manager!");
+            System.out.println(options);
 
-//        showContacts(p, file);
-//        List<String> search = searchContact(p, file, "John Smith");
-//        showFilteredContacts(search);
-        deleteContact(p, "John Smith");
-        showContacts(p, file);
+            //getting input....
+            input = Integer.parseInt(sc.nextLine());
 
+            switch (input){
+                case 1:
+                    showContacts(p,file);
+                    break;
+                case 2:
+                    System.out.println("Insert Name");
+                    String name = sc.nextLine();
+                    System.out.println("Insert Phone Number");
+                    String number = sc.nextLine();
+                    String newPerson = name + " " + number;
+                    List<String> newContact = Arrays.asList(newPerson);
+                    addContact(p, newContact);
+                    break;
+                case 3:
+                    System.out.println("What contact are you looking for?");
+                    String search = sc.nextLine();
+                    List<String> results = searchContact(p, file, search);
+                    System.out.println(results);
+                    break;
+                case 4:
+                    System.out.println("What contact do you want to delete?");
+                    String delete = sc.nextLine();
+                    deleteContact(p, delete);
+                    System.out.println("It has been done");
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Invalid Input. Try Again");
+            }
+        } while (input != 5);
 
 
     }
