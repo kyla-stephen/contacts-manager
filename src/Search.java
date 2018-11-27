@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Search {
@@ -9,7 +8,6 @@ public class Search {
     //    SEARCH
     public static void searchContact(Path p, List<String> file, String search){
         System.out.println();
-        List<String> results = new ArrayList<>();
         try {
             file = Files.readAllLines(p);
         } catch (IOException e) {
