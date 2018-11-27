@@ -84,7 +84,16 @@ public class index {
             System.out.println(contact);
         }
         System.out.println();
+    }
 
+//    CASE 2 METHOD
+    public static String returnNewContact (Scanner sc){
+        System.out.println("Insert Name: ");
+        String name = sc.nextLine();
+        System.out.println("Insert Phone Number: ");
+        String number = sc.nextLine();
+        String newPerson = name + " \t| " + number;
+        return newPerson;
     }
 
 
@@ -117,11 +126,7 @@ public class index {
                     showContacts(p,file);
                     break;
                 case 2:
-                    System.out.println("Insert Name: ");
-                    String name = sc.nextLine();
-                    System.out.println("Insert Phone Number: ");
-                    String number = sc.nextLine();
-                    String newPerson = name + " \t| " + number;
+                    String newPerson = returnNewContact(sc);
                     List<String> newContact = Arrays.asList(newPerson);
                     addContact(p, newContact);
                     break;
