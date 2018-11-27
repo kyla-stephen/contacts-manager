@@ -1,4 +1,3 @@
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -6,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
 public class index {
@@ -52,7 +50,7 @@ public class index {
                 "5. Exit.\n" +
                 "Enter an option (1, 2, 3, 4 or 5):";
 
-
+        //Doing stuff
         int input = 0;
         do{
             //Prompts
@@ -74,8 +72,7 @@ public class index {
                 case 3:
                     System.out.println("What contact are you looking for?");
                     String searchCode = sc.nextLine();
-                    List<String> results = search.searchContact(p, file, searchCode);
-                    System.out.println(results);
+                    search.searchContact(p, file, searchCode);
                     System.out.println();
                     break;
                 case 4:
@@ -91,7 +88,5 @@ public class index {
                     System.out.println("Invalid Input. Try Again");
             }
         } while (input != 5);
-
-
     }
-}
+} //END OF MAIN======================================================================================
