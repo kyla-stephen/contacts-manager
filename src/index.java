@@ -13,6 +13,7 @@ public class index {
 
 //    SHOW CONTACTS
     public static void showContacts(Path p, List<String> file){
+        System.out.println("Name \t| Phone Number\n--------------------------");
         try {
             file = Files.readAllLines(p);
         } catch (IOException e) {
@@ -21,11 +22,13 @@ public class index {
         for (String contact: file){
             System.out.println(contact);
         }
+        System.out.println();
 
     }
 
     // ADD CONTACTS
     public static void addContact(Path p, List<String> newContact){
+        System.out.println();
         try{
             Files.write(p, newContact, StandardOpenOption.APPEND);
 
@@ -36,6 +39,7 @@ public class index {
 
 //    SEARCH
     public static List<String> searchContact(Path p, List<String> file, String search){
+        System.out.println();
         List<String> results = new ArrayList<>();
         try {
             file = Files.readAllLines(p);
@@ -52,6 +56,7 @@ public class index {
 
     // DELETE
     public static void deleteContact(Path p, String delContact){
+        System.out.println();
         List<String> originalList = new ArrayList<>();
         List<String> newContactList = new ArrayList<>();
         try {
@@ -74,9 +79,11 @@ public class index {
 
 //    SHOW FILTERED CONTACTS
     public static void showFilteredContacts(List<String> file){
+        System.out.println();
         for (String contact: file){
             System.out.println(contact);
         }
+        System.out.println();
 
     }
 
@@ -110,11 +117,11 @@ public class index {
                     showContacts(p,file);
                     break;
                 case 2:
-                    System.out.println("Insert Name");
+                    System.out.println("Insert Name: ");
                     String name = sc.nextLine();
-                    System.out.println("Insert Phone Number");
+                    System.out.println("Insert Phone Number: ");
                     String number = sc.nextLine();
-                    String newPerson = name + " " + number;
+                    String newPerson = name + " \t| " + number;
                     List<String> newContact = Arrays.asList(newPerson);
                     addContact(p, newContact);
                     break;
@@ -123,14 +130,16 @@ public class index {
                     String search = sc.nextLine();
                     List<String> results = searchContact(p, file, search);
                     System.out.println(results);
+                    System.out.println();
                     break;
                 case 4:
                     System.out.println("What contact do you want to delete?");
                     String delete = sc.nextLine();
                     deleteContact(p, delete);
-                    System.out.println("It has been done");
+                    System.out.println("Contact delete!");
                     break;
                 case 5:
+                    System.out.println("Bye!");
                     break;
                 default:
                     System.out.println("Invalid Input. Try Again");
