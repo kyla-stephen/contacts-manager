@@ -77,15 +77,6 @@ public class index {
         }
     }
 
-//    SHOW FILTERED CONTACTS
-    public static void showFilteredContacts(List<String> file){
-        System.out.println();
-        for (String contact: file){
-            System.out.println(contact);
-        }
-        System.out.println();
-    }
-
 //    CASE 2 METHOD
     public static String returnNewContact (Scanner sc){
         System.out.println("Insert Name: ");
