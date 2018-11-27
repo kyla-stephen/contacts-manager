@@ -2,6 +2,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,12 +19,19 @@ public class index {
             e.printStackTrace();
         }
         for (String contact: file){
-            System.out.println(contact);
+            String num = contact.substring(contact.indexOf("|") + 1);
+            if (num.length() < 10){
+                System.out.println(contact.replaceFirst("(\\d{3})(\\d+)", "$1-$2"));
+            } else {
+                System.out.println(contact.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"));
+            }
+
         }
         System.out.println();
 
     }
-//    CASE 2 METHOD
+
+//    THIS METHOD GATHERS THE INFORMATION NEEDED TO MAKE A NEW CONTACT
     public static String returnNewContact (Scanner sc){
         System.out.println("Insert Name: ");
         String name = sc.nextLine();
@@ -58,7 +66,12 @@ public class index {
             System.out.println(options);
 
             //getting input....
-            input = Integer.parseInt(sc.nextLine());
+            try {
+                input = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println();
+//                e.printStackTrace();
+            }
 
             switch (input){
                 case 1:
