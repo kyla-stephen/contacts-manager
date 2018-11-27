@@ -15,7 +15,12 @@ public class Search {
         }
         for (String contact: file){
             if(contact.contains(search)){
-                System.out.println(contact.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"));
+                String num = contact.substring(contact.indexOf("|") + 1);
+                if (num.length() < 10){
+                    System.out.println(contact.replaceFirst("(\\d{3})(\\d+)", "$1-$2"));
+                } else {
+                    System.out.println(contact.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"));
+                }
             }
         }
     }

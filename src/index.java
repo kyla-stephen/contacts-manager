@@ -68,6 +68,7 @@ public class index {
             try {
                 input = Integer.parseInt(sc.nextLine());
             } catch (NumberFormatException e) {
+                System.out.println();
 //                e.printStackTrace();
             }
 
