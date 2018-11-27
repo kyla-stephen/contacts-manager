@@ -30,7 +30,8 @@ public class index {
         System.out.println();
 
     }
-//    CASE 2 METHOD
+
+//    THIS METHOD GATHERS THE INFORMATION NEEDED TO MAKE A NEW CONTACT
     public static String returnNewContact (Scanner sc){
         System.out.println("Insert Name: ");
         String name = sc.nextLine();
