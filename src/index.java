@@ -19,7 +19,8 @@ public class index {
             e.printStackTrace();
         }
         for (String contact: file){
-            if (contact.length() < 10){
+            String num = contact.substring(contact.indexOf("|") + 1);
+            if (num.length() < 10){
                 System.out.println(contact.replaceFirst("(\\d{3})(\\d+)", "$1-$2"));
             } else {
                 System.out.println(contact.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"));
@@ -35,12 +36,7 @@ public class index {
         String name = sc.nextLine();
         System.out.println("Insert Phone Number: ");
         String number = sc.nextLine();
-        String numberInput = number.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
-        if (numberInput.length() <= 7){
-            number.replaceFirst("(\\d{3})(\\d+)", "$1-$2");
-        }
-
-        String newPerson = name + " \t| " + numberInput;
+        String newPerson = name + " \t| " + number;
         return newPerson;
     }
 
