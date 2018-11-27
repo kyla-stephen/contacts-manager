@@ -25,58 +25,6 @@ public class index {
         System.out.println();
 
     }
-
-    // ADD CONTACTS
-    public static void addContact(Path p, List<String> newContact){
-        System.out.println();
-        try{
-            Files.write(p, newContact, StandardOpenOption.APPEND);
-
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-//    SEARCH
-    public static List<String> searchContact(Path p, List<String> file, String search){
-        System.out.println();
-        List<String> results = new ArrayList<>();
-        try {
-            file = Files.readAllLines(p);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for (String contact: file){
-            if(contact.contains(search)){
-                results.add(contact);
-            }
-        }
-        return results;
-    }
-
-    // DELETE
-    public static void deleteContact(Path p, String delContact){
-        System.out.println();
-        List<String> originalList = new ArrayList<>();
-        List<String> newContactList = new ArrayList<>();
-        try {
-            originalList = Files.readAllLines(p);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for (String contact: originalList){
-            if (!contact.contains(delContact)){
-              newContactList.add(contact);
-            }
-        }
-
-        try {
-            Files.write(p, newContactList);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
 //    CASE 2 METHOD
     public static String returnNewContact (Scanner sc){
         System.out.println("Insert Name: ");
@@ -88,12 +36,14 @@ public class index {
     }
 
 
-//    MAIN
+//    MAIN======================================================================================
     public static void main(String[] args){
 //        Variables
         Path p = Paths.get("contacts.txt");
         List<String> file = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
+        Search search = new Search();
+        AddAndRemove edit = new AddAndRemove();
 
         String options = "1. View contacts.\n" +
                 "2. Add a new contact.\n" +
@@ -119,20 +69,20 @@ public class index {
                 case 2:
                     String newPerson = returnNewContact(sc);
                     List<String> newContact = Arrays.asList(newPerson);
-                    addContact(p, newContact);
+                    edit.addContact(p, newContact);
                     break;
                 case 3:
                     System.out.println("What contact are you looking for?");
-                    String search = sc.nextLine();
-                    List<String> results = searchContact(p, file, search);
+                    String searchCode = sc.nextLine();
+                    List<String> results = search.searchContact(p, file, searchCode);
                     System.out.println(results);
                     System.out.println();
                     break;
                 case 4:
                     System.out.println("What contact do you want to delete?");
                     String delete = sc.nextLine();
-                    deleteContact(p, delete);
-                    System.out.println("Contact delete!");
+                    edit.deleteContact(p, delete);
+                    System.out.println("Contact deleted!");
                     break;
                 case 5:
                     System.out.println("Bye!");
