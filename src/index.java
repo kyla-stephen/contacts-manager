@@ -2,6 +2,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +19,12 @@ public class index {
             e.printStackTrace();
         }
         for (String contact: file){
-            System.out.println(contact);
+            if (contact.length() < 10){
+                System.out.println(contact.replaceFirst("(\\d{3})(\\d+)", "$1-$2"));
+            } else {
+                System.out.println(contact.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3"));
+            }
+
         }
         System.out.println();
 
@@ -29,7 +35,12 @@ public class index {
         String name = sc.nextLine();
         System.out.println("Insert Phone Number: ");
         String number = sc.nextLine();
-        String newPerson = name + " \t| " + number;
+        String numberInput = number.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
+        if (numberInput.length() <= 7){
+            number.replaceFirst("(\\d{3})(\\d+)", "$1-$2");
+        }
+
+        String newPerson = name + " \t| " + numberInput;
         return newPerson;
     }
 
