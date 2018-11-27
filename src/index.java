@@ -65,7 +65,11 @@ public class index {
             System.out.println(options);
 
             //getting input....
-            input = Integer.parseInt(sc.nextLine());
+            try {
+                input = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+//                e.printStackTrace();
+            }
 
             switch (input){
                 case 1:
